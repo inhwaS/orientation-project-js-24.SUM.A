@@ -11,12 +11,21 @@ function ExperienceForm() {
     logo: ''
   });
 
+  const [currentlyWorking, setCurrentlyWorking] = useState(false); // New state for checkbox
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value
     });
+  };
+
+  const handleCheckboxChange = () => {
+    setCurrentlyWorking(!currentlyWorking);
+    if (!currentlyWorking) {
+      setFormData({ ...formData, end_date: '' }); // Reset end date when checked
+    }
   };
 
   const handleSubmit = (e) => {
@@ -65,14 +74,30 @@ function ExperienceForm() {
       <div>
         <label>
           Start Date:
-          <input type="text" name="start_date" value={formData.start_date} onChange={handleChange} required />
+          <input type="date" name="start_date" value={formData.start_date} onChange={handleChange} required />
         </label>
       </div>
       <div>
         <label>
           End Date:
-          <input type="text" name="end_date" value={formData.end_date} onChange={handleChange} required />
+          <input 
+            type="date" 
+            name="end_date" 
+            value={formData.end_date} 
+            onChange={handleChange} 
+            disabled={currentlyWorking} // Disable if checkbox is checked
+            required={!currentlyWorking} // Required only if checkbox is not checked
+          />
         </label>
+      </div>
+      <div className="checkbox-container">
+        <input 
+          type="checkbox" 
+          id="currentlyWorkingCheckbox"
+          checked={currentlyWorking} 
+          onChange={handleCheckboxChange} 
+        />
+        <label htmlFor="currentlyWorkingCheckbox">Currently Working Here</label>
       </div>
       <div>
         <label>
