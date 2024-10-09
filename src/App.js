@@ -26,10 +26,6 @@ function App() {
     setShowExperienceForm(!showEducationForm);
   }
 
-  const toggleEducationForm = () => {
-    setShowEducationForm(!showEducationForm);
-  }
-
   return (
     <div className="App">
       <h1>Resume Builder</h1>
