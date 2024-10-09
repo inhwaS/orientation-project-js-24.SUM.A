@@ -31,4 +31,16 @@ form {
   button:hover {
     background-color: rgb(228, 165, 42); 
   }
+
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    white-space: nowrap;
+  }
   
+  .checkbox-container label {
+    margin-left: 5px;
+    white-space: nowrap;
+    width: auto;
+  }
